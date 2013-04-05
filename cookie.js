@@ -1,5 +1,5 @@
 var CookieHelper = { 
-	create : function (name,value,days) { 
+	add : function (key,value,days) { 
 		if (days) { 
 			var date = new Date(); 
 			date.setTime(date.getTime()+(days*24*60*60*1000)); 
@@ -7,10 +7,10 @@ var CookieHelper = {
 		}
 		else 
 			var expires = ""; 
-		document.cookie = name+"="+value+expires+"; path=/"; 
+		document.cookie = key+"="+value+expires+"; path=/"; 
 	}, 
-	read : function (name) { 
-		var nameEQ = name + "="; 
+	get : function (key) { 
+		var nameEQ = key + "="; 
 		var ca = document.cookie.split(';'); 
 		for(var i=0;i < ca.length;i++) { 
 			var c = ca[i]; 
@@ -20,7 +20,7 @@ var CookieHelper = {
 		} 
 		return null; 
 	}, 
-	erase : function (name) { 
-		this.create(name,"",-1); 
+	remove : function (key) { 
+		this.add(key,"",-1); 
 	} 
 } 
